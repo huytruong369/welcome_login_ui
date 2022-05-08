@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:welcome_login_ui/Screens/Login/components/background.dart';
-import 'package:welcome_login_ui/Screens/SignUp/signup_screen.dart';
+import 'package:welcome_login_ui/Screens/Login/login_screen.dart';
+import 'package:welcome_login_ui/Screens/SignUp/components/background.dart';
+import 'package:welcome_login_ui/Screens/SignUp/components/or_divider.dart';
+import 'package:welcome_login_ui/Screens/SignUp/components/social_icon.dart';
 import 'package:welcome_login_ui/components/rounded_button.dart';
 import 'package:welcome_login_ui/components/rounded_input_field.dart';
 import 'package:welcome_login_ui/components/rounded_password_field.dart';
-import 'package:welcome_login_ui/components/text_field_container.dart';
-import 'package:welcome_login_ui/constants.dart';
-
 import '../../../components/already_have_an_account_check.dart';
 
 class Body extends StatelessWidget {
@@ -18,25 +17,23 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BackGround(
+    return Background(
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'LOGIN',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              'SIGNUP',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            SizedBox(
-              height: size.height * .03,
-            ),
+            SizedBox(height: size.height * .03),
             SvgPicture.asset(
-              'assets/icons/login.svg',
+              'assets/icons/signup.svg',
               height: size.height * .36,
             ),
-            SizedBox(
-              height: size.height * .03,
-            ),
+            SizedBox(height: size.height * .03),
             RoundedInputField(
               hintText: 'Your Email',
               onChanged: (value) {},
@@ -45,23 +42,39 @@ class Body extends StatelessWidget {
               onchanged: (value) {},
             ),
             RoundedButton(
-              text: 'LOGIN',
+              text: 'SIGNUP',
               press: () {},
             ),
-            SizedBox(
-              height: size.height * .03,
-            ),
+            SizedBox(height: size.height * .03),
             AlreadyHaveAnAccountCheck(
-              login: true,
+              login: false,
               press: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return const SignUpScreen();
+                      return const LoginScreen();
                     },
                   ),
                 );
               },
+            ),
+            const OrDivider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SocialIcon(
+                  press: () {},
+                  iconSrc: 'assets/icons/facebook.svg',
+                ),
+                SocialIcon(
+                  press: () {},
+                  iconSrc: 'assets/icons/twitter.svg',
+                ),
+                SocialIcon(
+                  press: () {},
+                  iconSrc: 'assets/icons/google-plus.svg',
+                ),
+              ],
             ),
           ],
         ),
